@@ -1,0 +1,71 @@
+@import "../../default";
+
+#home {
+  width: 100%;
+  height: 100vh;
+  padding: 0 1.5em;
+  background-color: $primary-color;
+  position: relative;
+  @include flexBox(row, center, center);
+  .hero {
+    &-name {
+      font-family: Nunito-Bolder;
+      font-size: 1.7rem;
+      color: $para-2;
+      margin-bottom: 0.8em;
+    }
+    &-position {
+      font-family: Nunito-Bolder;
+      font-size: 2.9rem;
+      line-height: 0.95em;
+      color: $para-2;
+      margin-bottom: 0.8em;
+    }
+    &-intro {
+      width: 250px;
+      line-height: 1.4em;
+      margin-bottom: 3em;
+    }
+    &-btn {
+      font-family: Nunito-Bolder;
+      margin-right: 2em;
+    }
+  }
+}
+@media screen and(min-width:$tablet-size) {
+  #home {
+    justify-content: flex-start;
+    background-color: $primary-color;
+    .hero {
+      &-name {
+        font-size: 2rem;
+      }
+      &-position {
+        font-size: 3.5rem;
+      }
+    }
+  }
+}
+@media screen and(min-width:950px) {
+  #home {
+    .hero {
+      &-name {
+        font-size: 2.3rem;
+      }
+      &-position {
+        font-size: 3.7rem;
+      }
+    }
+  }
+}
+
+@media screen and(min-width:$desktop-size) {
+  #home {
+    padding: 0 2.5em;
+    .hero {
+      &-position {
+        line-height: 1em;
+      }
+    }
+  }
+}

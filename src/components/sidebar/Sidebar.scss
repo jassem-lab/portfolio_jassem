@@ -1,0 +1,191 @@
+@import "../default";
+
+.sidebar {
+  width: 100%;
+  position: fixed;
+  @include flexBox(column, space-between, flex-start);
+  padding: 1em 1.5em;
+  z-index: 5;
+  background-color: lighten($primary-color, 5%);
+  .brand {
+    &-icon {
+      font-family: Nunito-Bolder;
+      font-size: 1.3rem;
+      border: 3px solid #fff;
+      padding: 2px 8px;
+      color: #fff;
+      cursor: pointer;
+      transition: $transition;
+      &:hover {
+        color: $secondary-color;
+        border-color: $secondary-color;
+      }
+    }
+  }
+
+  .hamburger-menu {
+    position: absolute;
+    top: 1.35em;
+    right: 1.5em;
+    display: block;
+    cursor: pointer;
+    z-index: 15;
+    &-line {
+      background-color: #fff;
+      width: 33px;
+      height: 3px;
+      margin: 5px 0px;
+      transition: $transition;
+      &:first-child {
+        width: 20px;
+        margin-left: auto;
+        transition: $transition;
+      }
+    }
+    &:hover .hamburger-menu-line {
+      background-color: $secondary-color;
+    }
+  }
+  .hamburger-trans {
+    & .hamburger-menu-line:nth-child(1) {
+      width: 33px;
+      -webkit-transform: rotate(-45deg) translate(-5px, 6px);
+      transform: rotate(-45deg) translate(-5px, 6px);
+    }
+    & .hamburger-menu-line:nth-child(2) {
+      opacity: 0;
+    }
+    & .hamburger-menu-line:nth-child(3) {
+      -webkit-transform: rotate(45deg) translate(-5px, -6px);
+      transform: rotate(45deg) translate(-5px, -6px);
+    }
+  }
+  .social-links {
+    display: none;
+    &-url {
+      color: $tertiary-color;
+    }
+  }
+  .wrapper {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.65);
+    visibility: hidden;
+    .navbar {
+      width: 50%;
+      background-color: lighten($primary-color, 5%);
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      height: 100vh;
+      transform: translateX(100%);
+      overflow: hidden;
+      transition: $transition;
+      text-align: center;
+      z-index: 10;
+      @include flexBox(column, flex-start, center);
+      padding-top: 8em;
+      .close-btn {
+        position: absolute;
+        font-size: 2.5rem;
+        top: 10px;
+        right: 25px;
+        cursor: pointer;
+        transition: $transition;
+        color: $tertiary-color;
+        &:hover {
+          color: $secondary-color;
+        }
+        & .navbar {
+          transform: translateX(100%);
+        }
+      }
+      &-item {
+        list-style-type: none;
+        padding: 0.5em 0;
+        margin-bottom: 2em;
+        cursor: pointer;
+        &-link {
+          text-decoration: none;
+          font-size: 1.1rem;
+          color: $tertiary-color;
+          transition: $transition;
+          font-family: Nunito-Bold;
+          &:hover {
+            color: $secondary-color;
+          }
+        }
+      }
+      .active {
+        color: $secondary-color;
+      }
+    }
+  }
+
+  .overlay {
+    visibility: visible;
+    & .navbar-open {
+      transform: translateX(0);
+    }
+  }
+}
+
+@media screen and(min-width:$desktop-size) {
+  .sidebar {
+    width: 25%;
+    height: 100%;
+    padding: 2em;
+    border-right: 2px solid $primary-color;
+    @include flexBox(column, space-around, center);
+    .brand {
+      padding-top: 0;
+      &-icon {
+        padding: 0 10px;
+        font-size: 3rem;
+      }
+    }
+    .hamburger-menu {
+      display: none;
+    }
+    .wrapper {
+      position: relative !important;
+      height: initial;
+      visibility: visible;
+      .navbar {
+        position: relative !important;
+        transform: translateX(0) !important;
+        padding-top: 0em !important;
+        width: inherit !important;
+        height: inherit !important;
+        padding-top: 1em;
+        & .close-btn {
+          display: none;
+        }
+        &-item {
+          width: 100%;
+          padding: 0.7em;
+          margin-bottom: 0.5em !important;
+        }
+      }
+    }
+
+    .social-links {
+      display: block;
+      width: 100%;
+      @include flexBox(row, space-evenly, center);
+      &-icons {
+        font-size: 1.7rem;
+        cursor: pointer;
+        transition: $transition;
+        &:hover {
+          color: $secondary-color;
+        }
+      }
+    }
+  }
+}

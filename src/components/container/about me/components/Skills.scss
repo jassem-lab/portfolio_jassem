@@ -1,0 +1,26 @@
+@import "../../../default";
+
+.skills {
+  width: 100%;
+  margin-top: 5em;
+  @include flexBox(column, space-between, center);
+  &-header {
+    text-align: center;
+    border-bottom: 3px solid $secondary-color;
+    margin-bottom: 1.5em;
+    font-size: 1.4rem;
+    font-family: Nunito-Bolder;
+    color: $para-1;
+  }
+  &-content {
+    width: 100%;
+    padding: 2em;
+    @include flexBox(column, space-between, center);
+  }
+}
+@media screen and (min-width:$tablet-size){
+  .skills{
+    width: 47.5%;
+  }
+}
+

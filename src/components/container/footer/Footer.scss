@@ -1,0 +1,11 @@
+@import "../../default";
+
+
+#footer{
+    background-color: lighten($primary-color,5%);
+    padding: 1.5em 1em;
+    text-align: center;
+    .footer-content{
+        color: #fff;
+    }
+}

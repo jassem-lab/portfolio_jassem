@@ -1,0 +1,31 @@
+@font-face {
+  font-family: Nunito;
+  src: url(./assets/fonts/Nunito-Regular.ttf);
+}
+@font-face {
+  font-family: Nunito-Bold;
+  src: url(./assets/fonts/Nunito-SemiBold.ttf);
+}
+@font-face {
+  font-family: Nunito-Bolder;
+  src: url(./assets/fonts/Nunito-Bold.ttf);
+}
+
+body {
+  font-family: Nunito, sans-serif;
+}
+
+.app {
+  overflow-y: auto;
+  scrollbar-color: lighten(#23252c, 15%) #23252c;
+  scrollbar-width: thin;
+}
+
+.app::-webkit-scrollbar {
+  background-color: #23252c;
+  width: 6px;
+}
+.app::-webkit-scrollbar-thumb {
+  background-color: lighten(#23252c, 15%);
+  border-radius: 2px;
+}

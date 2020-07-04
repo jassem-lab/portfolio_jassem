@@ -1,0 +1,35 @@
+@import "../../default";
+
+.projects-content-showcase {
+  position: relative;
+  background-color: #fff;
+  overflow: hidden;
+  &-img {
+    width: 100%;
+    height: 100%;
+  }
+  &-btns {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    bottom: 0;
+    position: absolute;
+    @include flexBox(row,space-evenly,center);
+    transition: $transition;
+    &-preview,
+    &-code {
+      transition: $transition;
+      transform: translateY(50%);
+      opacity: 0;
+    }
+  }
+  &:hover &-btns {
+    background-color: rgba(0, 0, 0, 0.75);
+    border: none;
+  }
+  &:hover &-btns-preview,
+  &:hover &-btns-code {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
