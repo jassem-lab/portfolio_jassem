@@ -21,16 +21,18 @@ function Projects() {
 
 
   return (
-    <div>
-      <h1> My projects Done ... </h1>
+    <div className="header-content">
     
       <div className="projects" id="projects">
+      <h2 className="header-content-title">My Projects </h2>
+
       {projects.map(project=>(
       <div>
       <h2 className="project__name">- {project.altName} : </h2>
       <div className="projects-list">
         
       <ProjectsContent
+      className="projects-content"
       key={project.altName}
       projectImg={project.projectImg}
       altName={project.altName}

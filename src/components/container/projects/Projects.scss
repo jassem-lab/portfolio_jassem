@@ -1,7 +1,7 @@
 @import "../../default";
 
 #projects {
-  width: 50%;
+  width: 100%;
   min-height: 80vh;
   padding: 7em 1.5em 3em 1.5em;
   @include flexBox(column, none, none);
