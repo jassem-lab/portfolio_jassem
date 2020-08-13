@@ -1,73 +1,95 @@
-import React, { useState } from "react";
+import React, { useState , useEffect } from "react";
 import "./Projects.scss";
-import { projectData, projectListData } from "./projectData";
 import ProjectsContent from "./ProjectsContent";
+import database from './api' ; 
+
+
+
+
 
 function Projects() {
-  const [projects, setProjects] = useState(projectData);
-  const [projectList, setProjectList] = useState(projectListData);
+  const [projects, setProjects] = useState([]);
 
-  React.useEffect(() => {
-    setActiveList("All");
-  }, []);
+  useEffect(()=>{
+    database
+    .collection('projects')
+    .onSnapshot(snapshot=>(
+        setProjects(snapshot.docs.map(doc => doc.data()))
+    ))
+  }, [])
 
-  const data =
-    projects &&
-    projects.map((item) => {
-      return (
-        <ProjectsContent
-          key={item.altName}
-          projectImg={item.projectImg}
-          altName={item.altName}
-          preview={item.preview}
-          github={item.github}
-        ></ProjectsContent>
-      );
-    });
 
-  const setActiveList = (name) => {
-    const newState = projectList.map((item) => {
-      if (item.listName === name) item.listActive = true;
-      else item.listActive = false;
-      return item;
-    });
-    setProjectList(newState);
-  };
-
-  const listProject = (p) => {
-    if (p.listName === "All") {
-      setProjects(projectData);
-      setActiveList(p.listName);
-      return;
-    }
-    const newState = projectData.filter((data) => data.lang === p.listName);
-    setProjects(newState);
-    setActiveList(p.listName);
-  };
-
-  const projectLists = projectList.map((p, i) => {
-    return (
-      <p
-        key={i}
-        className={
-          p.listActive ? "projects-list-link active-list" : "projects-list-link"
-        }
-        onClick={() => listProject(p)}
-      >
-        {p.listName}
-      </p>
-    );
-  });
 
   return (
-    <div id="projects">
-      <div className="header-content">
-        <h2 className="header-content-title">Projects</h2>
+    <div>
+      <h1> My projects Done ... </h1>
+    
+      <div className="projects" id="projects">
+      {projects.map(project=>(
+      <div>
+      <h2 className="project__name">- {project.altName} : </h2>
+      <div className="projects-list">
+        
+      <ProjectsContent
+      key={project.altName}
+      projectImg={project.projectImg}
+      altName={project.altName}
+      preview={project.preview}
+      github={project.github}
+      />
+     
       </div>
-      <div className="projects-list">{projectLists}</div>
-      <div className="projects-content">{data}</div>
-    </div>
-  );
-}
+      </div>
+      ))} 
+      </div>
+      </div>
+      );
+
+
+    }
+  // const setActiveList = (name) => {
+  //   const newState = projects.map((item) => {
+  //     if (item.listName === name) item.listActive = true;
+  //     else item.listActive = false;
+  //     return item;
+  //   });
+  //   // setProjectList(newState);
+  // };
+
+  // const listProject = (p) => {
+  //   if (p.listName === "All") {
+  //     // setProjects(projectData);
+  //     // setActiveList(p.listName);
+  //     return;
+  //   }
+  //   const newState = projects.filter((data) => data.lang === p.listName);
+  //   setProjects(newState);
+  //   setActiveList(p.listName);
+  // };
+
+  // const projectLists = projectList.map((p, i) => {
+  //   return (
+  //     <p
+  //       key={i}
+  //       className={
+  //         p.listActive ? "projects-list-link active-list" : "projects-list-link"
+  //       }
+  //       onClick={() => listProject(p)}
+  //     >
+  //       {p.listName}
+  //     </p>
+  //   );
+  // });
+
+  // return (
+  //   <div id="projects">
+  //     <div className="header-content">
+  //       <h2 className="header-content-title">Projects</h2>
+  //     </div>
+  //     <div className="projects-list">{projectLists}</div>
+  //     <div className="projects-content">{data}</div>
+  //   </div>
+  // );
+
 
 export default Projects;
